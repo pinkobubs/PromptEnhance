@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptEnhance — Transform Your AI Conversations</title>
+  <meta name="description" content="One-click prompt enhancement for ChatGPT, Claude, Gemini, and more. Prompt engineering at your fingertips in 0.5 seconds.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-effects">
+    <div class="aurora"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="grid-overlay"></div>
+    <div class="grain"></div>
+    <canvas id="stars-canvas"></canvas>
+  </div>
+
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <img src="logotransparent.png" alt="PromptEnhance Logo" />
+        </div>
+        <span class="logo-text">PromptEnhance</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#features">Features</a>
+        <a href="#advanced">Advanced</a>
+        <a href="#examples">Examples</a>
+      </div>
+
+      <div class="nav-right">
+        <span class="nav-creator">by <span class="creator-name">pinkobubs</span></span>
+        <a href="https://chromewebstore.google.com/detail/promptenhance/ajfnkdejpiigjhedggbinfpnnaboilho" class="nav-cta">
+          <span>Add to Chrome</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-badge" data-animate="fade-down">
+        <span class="badge-pulse"></span>
+        <span>🎉 Recently Launched!</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line" data-animate="fade-up" data-delay="100">Write prompts like</span>
+        <span class="title-line" data-animate="fade-up" data-delay="200">a <em class="title-accent">professional</em></span>
+      </h1>
+
+      <p class="hero-subtitle" data-animate="fade-up" data-delay="300">
+        One click. Half a second. Your rough ideas become precise, detailed prompts
+        that get you <strong>8× better AI responses</strong>. No more guessing. No more mediocre outputs.
+      </p>
+
+      <div class="hero-cta-group" data-animate="fade-up" data-delay="400">
+        <a href="https://chromewebstore.google.com/detail/promptenhance/ajfnkdejpiigjhedggbinfpnnaboilho" class="btn btn-primary magnetic">
+          <span>Add to Chrome For FREE</span>
+          <div class="btn-shine"></div>
+          <div class="btn-glow"></div>
+        </a>
+        <a href="#how-it-works" class="btn btn-ghost magnetic">
+          <span>Watch it work</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 7L13 10L8 13V7Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-stats" data-animate="fade-up" data-delay="500">
+        <div class="stat">
+          <span class="stat-value counter" data-target="0.5">0.5</span><span class="stat-unit">s</span>
+          <span class="stat-label">Enhancement time</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value counter" data-target="10">10</span><span class="stat-unit">+</span>
+          <span class="stat-label">Platforms supported</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">∞</span>
+          <span class="stat-label">Free forever</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Demo -->
+    <div class="hero-demo" data-animate="fade-up" data-delay="600">
+      <div class="demo-browser">
+        <div class="browser-header">
+          <div class="browser-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="browser-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>ChatGPT</span>
+          </div>
+        </div>
+        <div class="browser-content">
+          <div class="demo-input-area">
+            <div class="demo-input">
+              <span class="demo-text" id="demo-typed"></span>
+              <span class="demo-cursor"></span>
+            </div>
+            <button class="demo-enhance-btn" id="enhance-btn">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M9 1L11 6L16 9L11 12L9 17L7 12L2 9L7 6L9 1Z" fill="currentColor"/>
+              </svg>
+              <span>Enhance</span>
+            </button>
+          </div>
+          <div class="demo-result" id="demo-result">
+            <div class="result-header">
+              <span class="result-badge">✨ Enhanced</span>
+              <span class="result-time">0.5s</span>
+            </div>
+            <p class="result-text">
+              "Create a weather application using React that fetches real-time data from a weather API. Include:
+              current temperature with feels-like, 5-day hourly forecast, location search with autocomplete,
+              responsive mobile-first design, proper error handling for API failures, loading skeleton states,
+              and unit conversion (Celsius/Fahrenheit)."
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="demo-glow"></div>
+    </div>
+
+
+
+    <!-- Floating Elements -->
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </section>
+
+  <!-- Platforms Section -->
+  <section class="platforms">
+    <div class="section-container">
+      <p class="platforms-label">Works seamlessly with</p>
+      <div class="platforms-marquee">
+        <div class="platforms-track">
+          <div class="platform">ChatGPT</div>
+          <div class="platform">Claude</div>
+          <div class="platform">Gemini</div>
+          <div class="platform">Grok</div>
+          <div class="platform">DeepSeek</div>
+          <div class="platform">Perplexity</div>
+          <div class="platform">Mistral</div>
+          <div class="platform">Cursor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="problem" id="problem">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-animate="fade-up">The Problem</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="100">AI is only as good as <br><em>your prompts</em></h2>
+      </div>
+
+      <div class="problem-grid">
+        <div class="problem-card tilt-card" data-animate="fade-up" data-delay="0">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="problem-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 10V16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Time Wasted</h3>
+          <p>You spend more time rewording prompts than actually using AI outputs. Every failed attempt costs you momentum.</p>
+        </div>
+        <div class="problem-card tilt-card" data-animate="fade-up" data-delay="100">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="problem-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M16 8V24" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 12L16 16L24 12" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Generic Results</h3>
+          <p>Vague prompts = vague outputs. Without specificity, AI gives you surface-level responses you can't actually use.</p>
+        </div>
+        <div class="problem-card tilt-card" data-animate="fade-up" data-delay="200">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="problem-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M6 26L26 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+              <circle cx="22" cy="22" r="4" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Skill Gap</h3>
+          <p>Prompt engineering is a real skill. Those who master it get 10× the value from AI. But who has time to learn?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section class="solution" id="how-it-works">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-animate="fade-up">The Solution</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="100">Prompt engineering, <br><em>automated</em></h2>
+        <p class="section-desc" data-animate="fade-up" data-delay="200">
+          PromptEnhance adds an "Enhance" button directly inside your AI's input box.
+          One click transforms your rough idea into a professional-grade prompt.
+        </p>
+      </div>
+
+      <div class="steps">
+        <div class="step" data-step="1">
+          <div class="step-visual">
+            <div class="step-mockup tilt-card">
+              <div class="card-shine"></div>
+              <div class="card-border"></div>
+              <div class="mockup-input">
+                <span class="mockup-text typing-demo">make a weather app</span>
+                <span class="mockup-cursor"></span>
+              </div>
+            </div>
+          </div>
+          <div class="step-content">
+            <span class="step-number">01</span>
+            <h3>Type your idea</h3>
+            <p>Just write what you're thinking. No need to worry about structure, details, or phrasing.</p>
+          </div>
+        </div>
+
+        <div class="step" data-step="2">
+          <div class="step-visual">
+            <div class="step-mockup tilt-card">
+              <div class="card-shine"></div>
+              <div class="card-border"></div>
+              <div class="mockup-input with-button">
+                <span class="mockup-text">make a weather app</span>
+                <button class="mockup-enhance pulse-btn">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L10 5L14 8L10 11L8 15L6 11L2 8L6 5L8 1Z" fill="currentColor"/>
+                  </svg>
+                  Enhance
+                </button>
+              </div>
+              <div class="click-ripple"></div>
+            </div>
+          </div>
+          <div class="step-content">
+            <span class="step-number">02</span>
+            <h3>Click Enhance</h3>
+            <p>Our AI analyzes your intent and adds structure, context, specifications, and formatting best practices.</p>
+          </div>
+        </div>
+
+        <div class="step" data-step="3">
+          <div class="step-visual">
+            <div class="step-mockup result-mockup tilt-card">
+              <div class="card-shine"></div>
+              <div class="card-border"></div>
+              <div class="mockup-result">
+                <span class="mockup-badge">✨ Enhanced</span>
+                <p>"Create a weather application using React that fetches real-time data..."</p>
+              </div>
+            </div>
+          </div>
+          <div class="step-content">
+            <span class="step-number">03</span>
+            <h3>Get perfect results</h3>
+            <p>Your enhanced prompt is ready. Hit enter and watch AI finally understand exactly what you need.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow Comparison -->
+      <div class="comparison-block">
+        <div class="comparison-card old-way tilt-card" data-animate="fade-right">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="comparison-header">
+            <span class="comparison-icon">🐌</span>
+            <h4>Other Extensions</h4>
+            <span class="comparison-time">~60 seconds</span>
+          </div>
+          <ol class="comparison-steps">
+            <li>Type your prompt</li>
+            <li>Select and copy text</li>
+            <li>Click extension icon</li>
+            <li>Wait for popup</li>
+            <li>Paste prompt</li>
+            <li>Click enhance</li>
+            <li>Wait for result</li>
+            <li>Copy enhanced prompt</li>
+            <li>Switch back to AI tab</li>
+            <li>Paste into input</li>
+          </ol>
+        </div>
+
+        <div class="comparison-vs" data-animate="scale">VS</div>
+
+        <div class="comparison-card new-way tilt-card" data-animate="fade-left">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="comparison-header">
+            <span class="comparison-icon">⚡</span>
+            <h4>PromptEnhance</h4>
+            <span class="comparison-time">~2 seconds</span>
+          </div>
+          <ol class="comparison-steps">
+            <li>Type your prompt</li>
+            <li>Click Enhance</li>
+            <li class="done">Done ✓</li>
+          </ol>
+          <div class="comparison-badge">30× faster</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-animate="fade-up">Features</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="100">Built for <em>real workflows</em></h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card feature-large tilt-card" data-animate="fade-up">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="feature-content">
+            <h3>Three Enhancement Styles</h3>
+            <p>Choose Concise, Balanced, or Detailed based on your needs. Perfect control over how much enhancement you want.</p>
+            <div class="feature-tags">
+              <button class="tag" data-style="concise">Concise</button>
+              <button class="tag active" data-style="balanced">Balanced</button>
+              <button class="tag" data-style="detailed">Detailed</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card tilt-card" data-animate="fade-up" data-delay="50">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M6 16C6 10.477 10.477 6 16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M26 16C26 21.523 21.523 26 16 26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="16" r="3" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Lightning Fast</h3>
+          <p>Enhanced prompts appear in 0.5 seconds. No loading screens, no waiting.</p>
+        </div>
+
+        <div class="feature-card tilt-card" data-animate="fade-up" data-delay="100">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="6" y="6" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M6 14H26" stroke="currentColor" stroke-width="2"/>
+              <circle cx="11" cy="10" r="1" fill="currentColor"/>
+              <circle cx="15" cy="10" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Inline Experience</h3>
+          <p>No popups, no new tabs. The button lives right in your AI's input box.</p>
+        </div>
+
+        <div class="feature-card tilt-card" data-animate="fade-up" data-delay="150">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 6V26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 16H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Universal</h3>
+          <p>Works with ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, and more.</p>
+        </div>
+
+        <div class="feature-card tilt-card" data-animate="fade-up" data-delay="200">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="8" y="4" width="16" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Privacy First</h3>
+          <p>Your prompts are processed securely and never stored. Encrypted. Private.</p>
+        </div>
+
+        <div class="feature-card tilt-card" data-animate="fade-up" data-delay="250">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 6L19 12L26 13L21 18L22 25L16 22L10 25L11 18L6 13L13 12L16 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Free Forever</h3>
+          <p>25 free enhancements per day. No credit card. No trial. Just install and use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advanced Settings Section -->
+  <section class="advanced" id="advanced">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-animate="fade-up">Advanced</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="100">Total control with <br><em>Advanced Settings</em></h2>
+        <p class="section-desc" data-animate="fade-up" data-delay="200">
+          Fine-tune your prompts with professional-grade options. Choose frameworks, enable techniques, and adjust parameters for perfect results.
+        </p>
+      </div>
+
+      <div class="advanced-showcase">
+        <!-- Interactive Settings Panel -->
+        <div class="settings-panel tilt-card" data-animate="fade-right">
+          <div class="card-shine"></div>
+          <div class="card-border"></div>
+          <div class="settings-header">
+            <h4>ADVANCED SETTINGS</h4>
+            <button class="reset-btn">Reset</button>
+          </div>
+
+          <!-- Framework Selector -->
+          <div class="settings-group">
+            <label class="settings-label">
+              STRUCTURE FRAMEWORK
+              <span class="info-icon" data-highlight="framework">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M8 7V11M8 5V5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </label>
+            <div class="select-wrapper">
+              <select class="custom-select" id="framework-select">
+                <option value="none">None</option>
+                <option value="costar">COSTAR</option>
+                <option value="risen" selected>RISEN</option>
+                <option value="ape">APE</option>
+                <option value="care">CARE</option>
+              </select>
+              <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Enhancement Techniques -->
+          <div class="settings-group">
+            <label class="settings-label">ENHANCEMENT TECHNIQUES</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item">
+                <input type="checkbox" id="role-persona">
+                <span class="checkbox-custom"></span>
+                <span class="checkbox-label">Add Role/Persona</span>
+                <span class="info-icon small" data-highlight="role">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 6V10M7 4V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="chain-thought" checked>
+                <span class="checkbox-custom"></span>
+                <span class="checkbox-label">Chain-of-Thought (CoT)</span>
+                <span class="info-icon small" data-highlight="chain-thought">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 6V10M7 4V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" id="few-shot">
+                <span class="checkbox-custom"></span>
+                <span class="checkbox-label">Few-Shot Examples</span>
+                <span class="info-icon small" data-highlight="few-shot">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M7 6V10M7 4V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Fine-tuning Parameters -->
+          <div class="settings-group">
+            <label class="settings-label">FINE-TUNING PARAMETERS</label>
+
+            <div class="slider-item">
+              <div class="slider-header">
+                <span class="slider-name">
+                  Temperature
+                  <span class="info-icon small" data-highlight="temperature">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M7 6V10M7 4V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </span>
+                <span class="slider-value" id="temp-value">0.7</span>
+              </div>
+              <div class="slider-wrapper">
+                <input type="range" class="custom-slider" id="temperature" min="0" max="1.5" step="0.1" value="0.7">
+                <div class="slider-track"></div>
+                <div class="slider-fill" id="temp-fill"></div>
+                <div class="slider-labels">
+                  <span>0.0 Focused</span>
+                  <span>0.7 Balanced</span>
+                  <span>1.5 Creative</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-item">
+              <div class="slider-header">
+                <span class="slider-name">
+                  Top-P
+                  <span class="info-icon small" data-highlight="temperature">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M7 6V10M7 4V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </span>
+                <span class="slider-value" id="topp-value">0.90</span>
+              </div>
+              <div class="slider-wrapper">
+                <input type="range" class="custom-slider" id="top-p" min="0" max="1" step="0.05" value="0.9">
+                <div class="slider-track"></div>
+                <div class="slider-fill" id="topp-fill"></div>
+                <div class="slider-labels">
+                  <span>0.0 Focused</span>
+                  <span>0.5 Balanced</span>
+                  <span>1.0 Diverse</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features Explanation -->
+        <div class="advanced-features" data-animate="fade-left">
+          <div class="adv-feature" data-animate="fade-up" data-delay="0" data-feature="framework">
+            <div class="adv-feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M4 5H20M4 12H20M4 19H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="adv-feature-content">
+              <h4>Prompt Frameworks</h4>
+              <p>Choose from proven structures like RISEN, COSTAR, APE, or CARE to give your prompts professional scaffolding.</p>
+              <div class="framework-tags">
+                <span class="fw-tag">RISEN</span>
+                <span class="fw-tag">COSTAR</span>
+                <span class="fw-tag">APE</span>
+                <span class="fw-tag">CARE</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="adv-feature" data-animate="fade-up" data-delay="100" data-feature="role">
+            <div class="adv-feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="adv-feature-content">
+              <h4>Role & Persona</h4>
+              <p>Automatically inject expert personas into your prompts for domain-specific responses.</p>
+            </div>
+          </div>
+
+          <div class="adv-feature" data-animate="fade-up" data-delay="200" data-feature="chain-thought">
+            <div class="adv-feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3V21M12 3L8 7M12 3L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="adv-feature-content">
+              <h4>Chain-of-Thought</h4>
+              <p>Enable step-by-step reasoning for complex tasks that require logical breakdown.</p>
+            </div>
+          </div>
+
+          <div class="adv-feature" data-animate="fade-up" data-delay="250" data-feature="few-shot">
+            <div class="adv-feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="4" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="3" y="11" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2"/>
+                <rect x="3" y="18" width="7" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
+                <path d="M13 6L20 6M13 9L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 13L20 13M13 16L18 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M13 19L20 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="adv-feature-content">
+              <h4>Few-Shot Examples</h4>
+              <p>Include example inputs and outputs in your prompts to demonstrate the desired pattern, format, or behavior for more accurate AI responses.</p>
+            </div>
+          </div>
+
+          <div class="adv-feature" data-animate="fade-up" data-delay="300" data-feature="temperature">
+            <div class="adv-feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 16L5.5 21L8 13.5L2 9H9.5L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="adv-feature-content">
+              <h4>Temperature & Top-P</h4>
+              <p>Fine-tune creativity vs precision. Lower values = focused, higher values = creative diversity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples Section -->
+  <section class="examples" id="examples">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag" data-animate="fade-up">Examples</span>
+        <h2 class="section-title" data-animate="fade-up" data-delay="100">See the <em>transformation</em></h2>
+      </div>
+
+      <div class="examples-showcase tilt-card" data-animate="fade-up" data-delay="200">
+        <div class="card-shine"></div>
+        <div class="card-border"></div>
+        <div class="example-tabs">
+          <button class="example-tab active" data-tab="coding">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M6 7L2 10L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 7L18 10L14 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 4L8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Coding</span>
+          </button>
+          <button class="example-tab" data-tab="writing">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 4H16V16H4V4Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M7 8H13M7 12H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Writing</span>
+          </button>
+          <button class="example-tab" data-tab="analysis">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 17V10M8 17V6M13 17V8M18 17V3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Analysis</span>
+          </button>
+          <button class="example-tab" data-tab="study">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 3V17M3 10H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span>Study</span>
+          </button>
+          <button class="example-tab" data-tab="business">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 3L12 8L17 9L13 13L14 18L10 15L6 18L7 13L3 9L8 8L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <span>Business</span>
+          </button>
+          <button class="example-tab" data-tab="creative">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2L12 7L17 8L13 12L14 17L10 14L6 17L7 12L3 8L8 7L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="10" cy="10" r="2" fill="currentColor"/>
+            </svg>
+            <span>Creative</span>
+          </button>
+          <button class="example-tab" data-tab="research">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M15 15L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Research</span>
+          </button>
+        </div>
+
+        <div class="example-content active" data-content="coding">
+          <div class="example-before">
+            <span class="example-label">Before</span>
+            <p class="example-text">"make a weather app"</p>
+          </div>
+          <div class="example-arrow">
+            <div class="arrow-line"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="url(#arrowGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="arrowGrad" x1="5" y1="12" x2="19" y2="12">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="example-after">
+            <span class="example-label">After Enhancement</span>
+            <p class="example-text">"Create a modern, responsive weather application using React 18+ with TypeScript. The app should fetch real-time weather data from the OpenWeatherMap API (or similar). Key features: current conditions display with temperature, feels-like temperature, humidity, wind speed/direction, and UV index; interactive 5-day forecast with hourly breakdowns; weather icons matching conditions; location search with autocomplete using geocoding API; responsive mobile-first design with dark/light theme toggle; comprehensive error handling for API failures with user-friendly messages; loading skeleton states during data fetch; unit conversion toggle (Celsius/Fahrenheit, km/h/mph); weather alerts and severe weather warnings; and local storage for favorite locations."</p>
+          </div>
+        </div>
+
+        <div class="example-content" data-content="writing">
+          <div class="example-before">
+            <span class="example-label">Before</span>
+            <p class="example-text">"write blog about AI"</p>
+          </div>
+          <div class="example-arrow">
+            <div class="arrow-line"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="url(#arrowGrad2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="arrowGrad2" x1="5" y1="12" x2="19" y2="12">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="example-after">
+            <span class="example-label">After Enhancement</span>
+            <p class="example-text">"Write a comprehensive 1,500-word blog post titled 'How AI is Reshaping Our Daily Lives: A Look into the Near Future' for a tech-curious general audience (reading level: 8th grade). Structure: compelling hook opening with a relatable scenario; introduction establishing AI's current presence; 4 main sections (Smart Homes & IoT, Healthcare Revolution, Transportation Transformation, Education & Learning) each with 2-3 concrete examples; balanced discussion of benefits vs. privacy/employment concerns; 2-3 expert quote placeholders from tech leaders or researchers; engaging subheadings and bullet points for scannability; SEO-optimized with relevant keywords naturally integrated; and a thought-provoking conclusion with actionable takeaways and a call-to-action encouraging reader engagement."</p>
+          </div>
+        </div>
+
+        <div class="example-content" data-content="analysis">
+          <div class="example-before">
+            <span class="example-label">Before</span>
+            <p class="example-text">"analyze this data"</p>
+          </div>
+          <div class="example-arrow">
+            <div class="arrow-line"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="url(#arrowGrad3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="arrowGrad3" x1="5" y1="12" x2="19" y2="12">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="example-after">
+            <span class="example-label">After Enhancement</span>
+            <p class="example-text">"Perform a comprehensive statistical analysis of the provided dataset. Deliver: executive summary (2-3 paragraphs) highlighting the 3 most significant findings; detailed trend analysis showing changes over time with specific percentage increases/decreases and statistical significance tests; identification and explanation of outliers (using IQR method) and anomalies with potential root causes; correlation matrix analysis identifying strong relationships (r > 0.7) between variables with interpretation; predictive insights using regression analysis where applicable; actionable business recommendations (minimum 5) prioritized by impact and feasibility; and specific visualization recommendations (line charts for trends, scatter plots for correlations, heatmaps for patterns) with rationale for each chart type to effectively communicate findings to stakeholders."</p>
+          </div>
+        </div>
+
+        <div class="example-content" data-content="study">
+          <div class="example-before">
+            <span class="example-label">Before</span>
+            <p class="example-text">"explain photosynthesis"</p>
+          </div>
+          <div class="example-arrow">
+            <div class="arrow-line"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="url(#arrowGrad4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="arrowGrad4" x1="5" y1="12" x2="19" y2="12">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="example-after">
+            <span class="example-label">After Enhancement</span>
+            <p class="example-text">"Explain the process of photosynthesis in a clear, educational format suitable for high school biology students. Include: definition and importance of photosynthesis in the carbon cycle; step-by-step breakdown of the two main stages (light-dependent and light-independent reactions); chemical equation with explanation of reactants (CO2, H2O, light) and products (glucose, O2); role of chlorophyll and chloroplasts; factors affecting photosynthesis rate (light intensity, CO2 concentration, temperature); real-world examples connecting to plant growth and ecosystem dynamics; comparison with cellular respiration; and 3-5 study questions to test understanding, formatted for active recall practice."</p>
+          </div>
+        </div>
+
+        <div class="example-content" data-content="business">
+          <div class="example-before">
+            <span class="example-label">Before</span>
+            <p class="example-text">"marketing strategy"</p>
+          </div>
+          <div class="example-arrow">
+            <div class="arrow-line"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="url(#arrowGrad5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="arrowGrad5" x1="5" y1="12" x2="19" y2="12">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="example-after">
+            <span class="example-label">After Enhancement</span>
+            <p class="example-text">"Develop a comprehensive 12-month digital marketing strategy for a B2B SaaS startup targeting small to medium-sized businesses. Include: target audience personas with pain points and decision-making factors; competitive analysis framework identifying 3 main competitors and differentiation opportunities; multi-channel approach (content marketing, SEO, paid advertising, email campaigns, social media) with budget allocation percentages; quarterly milestones with specific KPIs (lead generation, conversion rates, CAC, LTV); content calendar outline for first quarter with topics, formats, and distribution channels; SEO keyword strategy targeting long-tail keywords with search intent analysis; paid advertising recommendations (Google Ads, LinkedIn Ads) with targeting parameters and expected ROI; email nurture sequences for different funnel stages; and success metrics dashboard with monthly review checkpoints."</p>
+          </div>
+        </div>
+
+        <div class="example-content" data-content="creative">
+          <div class="example-before">
+            <span class="example-label">Before</span>
+            <p class="example-text">"story idea"</p>
+          </div>
+          <div class="example-arrow">
+            <div class="arrow-line"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="url(#arrowGrad6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="arrowGrad6" x1="5" y1="12" x2="19" y2="12">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="example-after">
+            <span class="example-label">After Enhancement</span>
+            <p class="example-text">"Develop a compelling science fiction short story concept (2,000-3,000 words) exploring themes of artificial consciousness and human connection. Include: protagonist profile (name, background, core motivation, internal conflict); unique sci-fi premise with clear 'what if' question; world-building elements (time period, technology level, societal structure, rules of the world); three-act structure outline with key plot points (inciting incident, midpoint twist, climax, resolution); supporting characters with distinct voices and roles; central conflict (internal vs. external) with stakes clearly defined; thematic message about humanity, technology, or relationships; sensory details and atmosphere descriptions to establish mood; and dialogue style guidelines that reflect the futuristic setting while maintaining emotional authenticity."</p>
+          </div>
+        </div>
+
+        <div class="example-content" data-content="research">
+          <div class="example-before">
+            <span class="example-label">Before</span>
+            <p class="example-text">"research paper"</p>
+          </div>
+          <div class="example-arrow">
+            <div class="arrow-line"></div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="url(#arrowGrad7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="arrowGrad7" x1="5" y1="12" x2="19" y2="12">
+                  <stop stop-color="#a78bfa"/>
+                  <stop offset="1" stop-color="#f472b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="example-after">
+            <span class="example-label">After Enhancement</span>
+            <p class="example-text">"Write a comprehensive academic research paper (8,000-10,000 words) on the impact of remote work on employee productivity and mental health in the technology sector post-2020. Follow APA 7th edition formatting. Structure: abstract (250 words) summarizing methodology, key findings, and implications; introduction with problem statement, research questions (3-4), and hypothesis; literature review synthesizing 20+ peer-reviewed sources from the last 5 years covering remote work trends, productivity metrics, and mental health studies; methodology section detailing research design (mixed-methods: survey + interviews), sample size (n=500+), data collection procedures, and ethical considerations; results section with statistical analysis, thematic analysis of qualitative data, and visual data representations; discussion interpreting findings in context of existing literature, limitations, and unexpected discoveries; conclusion with implications for organizations and future research directions; and comprehensive reference list with proper citations throughout."</p>
+          </div>
+        </div>
+
+        <div class="example-stats">
+          <div class="example-stat">
+            <span class="stat-number">5-8×</span>
+            <span class="stat-desc">More detailed</span>
+          </div>
+          <div class="example-stat">
+            <span class="stat-number">12+</span>
+            <span class="stat-desc">Specifications added</span>
+          </div>
+          <div class="example-stat">
+            <span class="stat-number">100%</span>
+            <span class="stat-desc">Intent preserved</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="section-container">
+      <div class="cta-content" data-animate="scale">
+        <div class="cta-glow"></div>
+        <div class="cta-particles">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <h2 class="cta-title">Ready to unlock <br><em>AI's full potential?</em></h2>
+        <p class="cta-desc">One step away from getting dramatically better results from every AI conversation.</p>
+
+        <a href="https://chromewebstore.google.com/detail/promptenhance/ajfnkdejpiigjhedggbinfpnnaboilho" class="btn btn-primary btn-large magnetic">
+          <span>Add to Chrome — It's Free</span>
+          <div class="btn-shine"></div>
+          <div class="btn-glow"></div>
+        </a>
+
+        <div class="cta-features">
+          <div class="cta-feature">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>25 free enhancements/day</span>
+          </div>
+          <div class="cta-feature">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>No credit card required</span>
+          </div>
+          <div class="cta-feature">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 10L8 13L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Install in 5 seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-mark small">
+              <img src="logotransparent.png" alt="PromptEnhance Logo" />
+            </div>
+            <span>PromptEnhance</span>
+          </div>
+          <p class="footer-desc">One-click prompt enhancement that works right in your AI's input box. Better prompts, better results.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#features">Features</a>
+            <a href="#advanced">Advanced</a>
+            <a href="#examples">Examples</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="policy.html">Privacy Policy</a>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <a href="mailto:pinkobubs@gmail.com">Contact</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 PromptEnhance. All rights reserved.</p>
+        <p class="footer-credit">Made with <span class="heart">♥</span> by <span class="creator">pinkobubs</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 16V4M10 4L5 9M10 4L15 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

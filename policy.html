@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - PromptEnhance</title>
+  <meta name="description" content="Privacy Policy for PromptEnhance Chrome Extension">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       CSS Variables & Reset
+       ═══════════════════════════════════════════════════════════════ */
+    :root {
+      --bg-base: #09090b;
+      --bg-elevated: #18181b;
+      --bg-surface: #27272a;
+      --bg-hover: #3f3f46;
+
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-tertiary: #71717a;
+
+      --accent-purple: #a78bfa;
+      --accent-pink: #f472b6;
+      --accent-orange: #fb923c;
+
+      --gradient-primary: linear-gradient(135deg, var(--accent-purple), var(--accent-pink), var(--accent-orange));
+
+      --glass-bg: rgba(24, 24, 27, 0.8);
+      --glass-border: rgba(255, 255, 255, 0.08);
+
+      --container-max: 1200px;
+      --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-base);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--accent-purple);
+      color: white;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Background Effects
+       ═══════════════════════════════════════════════════════════════ */
+    .bg-effects {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora {
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      top: -25%;
+      left: -25%;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(167, 139, 250, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(244, 114, 182, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 80%, rgba(251, 146, 60, 0.08) 0%, transparent 50%);
+      animation: auroraShift 20s ease-in-out infinite;
+      filter: blur(60px);
+    }
+
+    @keyframes auroraShift {
+      0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      25% { transform: translate(5%, -5%) rotate(5deg) scale(1.05); }
+      50% { transform: translate(-3%, 3%) rotate(-3deg) scale(0.98); }
+      75% { transform: translate(2%, 5%) rotate(2deg) scale(1.02); }
+    }
+
+    .grain {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      animation: grainShift 8s steps(10) infinite;
+    }
+
+    @keyframes grainShift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-5%, 5%); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Navigation
+       ═══════════════════════════════════════════════════════════════ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(9, 9, 11, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s var(--ease-out);
+      padding: 6px;
+      overflow: hidden;
+    }
+
+    .logo-mark img {
+      width: 150%;
+      height: 150%;
+      object-fit: contain;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .logo:hover .logo-mark {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+    }
+
+    .logo-text {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-creator {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+
+    .creator-name {
+      color: var(--accent-pink);
+      font-weight: 600;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.625rem 1.25rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .nav-cta:hover {
+      background: var(--bg-surface);
+      border-color: var(--accent-purple);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Hero Section
+       ═══════════════════════════════════════════════════════════════ */
+    .hero {
+      padding: 140px 2rem 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      padding: 0.375rem 1rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-purple);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .title-accent {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .last-updated {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Content Section
+       ═══════════════════════════════════════════════════════════════ */
+    .content-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .content-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 4rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .content-card h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .content-card h2:first-child {
+      margin-top: 0;
+    }
+
+    .content-card h2::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--gradient-primary);
+      margin-bottom: 1rem;
+      border-radius: 2px;
+    }
+
+    .content-card h3 {
+      font-size: 1.375rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .content-card p {
+      margin-bottom: 1.25rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .content-card ul {
+      margin-bottom: 1.5rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .content-card li {
+      margin-bottom: 0.875rem;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+      padding-left: 1.75rem;
+      position: relative;
+    }
+
+    .content-card li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-purple);
+      font-weight: 600;
+    }
+
+    .content-card strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.05));
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin: 2rem 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .permissions-grid {
+      display: grid;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .permission-item {
+      background: var(--bg-surface);
+      padding: 1.25rem;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .permission-item:hover {
+      border-color: rgba(167, 139, 250, 0.3);
+      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.1);
+    }
+
+    .permission-item strong {
+      color: var(--accent-purple);
+      font-size: 1.05rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info {
+      background: var(--gradient-primary);
+      padding: 2.5rem;
+      border-radius: 16px;
+      margin: 3rem 0;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(167, 139, 250, 0.3);
+    }
+
+    .contact-info h3 {
+      color: white;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .contact-info p {
+      color: white;
+      opacity: 0.95;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info a {
+      color: white;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Footer
+       ═══════════════════════════════════════════════════════════════ */
+    .footer {
+      background: var(--bg-base);
+      border-top: 1px solid var(--glass-border);
+      margin-top: 4rem;
+    }
+
+    .footer-container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo-mark.small {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      padding: 7.5px;
+    }
+
+    .footer-logo span {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 350px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col li::before {
+      display: none;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+      padding-left: 0;
+    }
+
+    .footer-col a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid var(--glass-border);
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+    }
+
+    .footer-credit {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .heart {
+      color: var(--accent-pink);
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .creator {
+      color: var(--accent-pink);
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       Responsive
+       ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-creator {
+        display: none;
+      }
+
+      .hero {
+        padding: 120px 1.5rem 60px;
+      }
+
+      .content-card {
+        padding: 2rem;
+      }
+
+      .content-card h2 {
+        font-size: 1.5rem;
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+
+      .footer-credit {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Effects -->
+  <div class="bg-effects">
+    <div class="aurora"></div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">
+          <img src="logotransparent.png" alt="PromptEnhance Logo" />
+        </div>
+        <span class="logo-text">PromptEnhance</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-creator">
+          by <span class="creator-name">pinkobubs</span>
+        </div>
+        <a href="index.html" class="nav-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-tag">Legal</div>
+      <h1 class="hero-title">
+        <span class="title-accent">Privacy</span> Policy
+      </h1>
+      <p class="hero-subtitle">Your privacy and data security are our top priorities</p>
+      <div class="last-updated">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 6v6l4 2"/>
+        </svg>
+        Last Updated: December 29, 2025
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="content-section">
+    <div class="content-card">
+
+      <h2>Introduction</h2>
+      <p>PromptEnhance ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and protect information when you use our Chrome extension.</p>
+
+      <h2>Information We Collect</h2>
+
+      <h3>Information You Provide</h3>
+      <ul>
+        <li><strong>Account Information:</strong> When you sign in using Google OAuth, we collect your name, email address, and profile picture from your Google account.</li>
+        <li><strong>Prompt Content:</strong> The text prompts you choose to enhance are temporarily processed to provide the enhancement service.</li>
+      </ul>
+
+      <h3>Automatically Collected Information</h3>
+      <ul>
+        <li><strong>Usage Statistics:</strong> We collect anonymous usage data including the number of prompts enhanced, enhancement style preferences, and feature usage to improve our service.</li>
+        <li><strong>Technical Information:</strong> Browser type, extension version, and basic error logs for debugging purposes.</li>
+      </ul>
+
+      <h2>How We Use Your Information</h2>
+      <p>We use the collected information to:</p>
+      <ul>
+        <li>Provide and improve the prompt enhancement service</li>
+        <li>Authenticate your account and manage user sessions</li>
+        <li>Track usage limits for free and paid tiers</li>
+        <li>Improve the quality of our enhancement algorithms</li>
+        <li>Provide customer support</li>
+        <li>Communicate important updates about the service</li>
+      </ul>
+
+      <h2>Data Processing and Storage</h2>
+
+      <h3>Prompt Processing</h3>
+      <div class="highlight-box">
+        <p>Your prompts are sent to our secure servers only when you click the "Enhance" button. Prompts are processed in real-time and are <strong>not stored</strong> permanently on our servers. All data transmission uses encrypted HTTPS connections.</p>
+      </div>
+      <ul>
+        <li>Prompts are transmitted using encrypted HTTPS connections</li>
+        <li>We use third-party AI services (via API) to generate enhanced prompts</li>
+        <li>Prompts are never retained after processing</li>
+      </ul>
+
+      <h3>Data Storage</h3>
+      <ul>
+        <li>Account information is stored securely in our database</li>
+        <li>Usage statistics are stored to track your enhancement limit and service usage</li>
+        <li>Authentication tokens are stored locally in your browser</li>
+        <li>We do not sell, trade, or rent your personal information to third parties</li>
+      </ul>
+
+      <h2>Third-Party Services</h2>
+      <p>We use the following third-party services:</p>
+      <ul>
+        <li><strong>Google OAuth:</strong> For secure authentication</li>
+        <li><strong>Cloudflare:</strong> For hosting and security</li>
+        <li><strong>AI API Services:</strong> For prompt enhancement processing (prompts are processed but not stored by these services)</li>
+      </ul>
+      <p>These services have their own privacy policies governing their use of your information.</p>
+
+      <h2>Data Retention</h2>
+      <ul>
+        <li><strong>Account Data:</strong> Retained while your account is active and for a reasonable period after account deletion to comply with legal obligations</li>
+        <li><strong>Usage Statistics:</strong> Retained for up to 24 months for service improvement purposes</li>
+        <li><strong>Prompts:</strong> Not retained after processing</li>
+      </ul>
+
+      <h2>Your Rights</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access the personal information we hold about you</li>
+        <li>Request correction of inaccurate information</li>
+        <li>Request deletion of your account and associated data</li>
+        <li>Opt-out of promotional communications</li>
+        <li>Export your data</li>
+      </ul>
+      <p>To exercise these rights, please contact us using the information provided below.</p>
+
+      <h2>Data Security</h2>
+      <p>We implement appropriate technical and organizational measures to protect your information:</p>
+      <ul>
+        <li>Encrypted data transmission (HTTPS/TLS)</li>
+        <li>Secure authentication using OAuth 2.0</li>
+        <li>Regular security audits</li>
+        <li>Access controls and monitoring</li>
+      </ul>
+      <div class="highlight-box">
+        <p>However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+      </div>
+
+      <h2>Children's Privacy</h2>
+      <p>PromptEnhance is not intended for users under 13 years of age. We do not knowingly collect information from children under 13. If you believe we have collected information from a child under 13, please contact us.</p>
+
+      <h2>International Users</h2>
+      <p>Your information may be transferred to and processed in countries other than your country of residence. By using PromptEnhance, you consent to such transfers.</p>
+
+      <h2>Changes to This Privacy Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by:</p>
+      <ul>
+        <li>Posting the new policy with an updated "Last Updated" date</li>
+        <li>Sending an email notification (if you have an account)</li>
+      </ul>
+      <p>Your continued use of PromptEnhance after changes constitutes acceptance of the updated policy.</p>
+
+      <h2>Chrome Web Store Compliance</h2>
+      <p>This extension complies with Chrome Web Store policies:</p>
+      <ul>
+        <li>We use the minimum permissions necessary for functionality</li>
+        <li>We do not access or collect data from websites beyond what is necessary for the enhancement feature</li>
+        <li>We do not inject ads or modify website content beyond the enhancement button</li>
+      </ul>
+
+      <h3>Permissions Justification</h3>
+      <div class="permissions-grid">
+        <div class="permission-item">
+          <strong>activeTab</strong>
+          To detect AI platform websites and inject the enhancement button
+        </div>
+        <div class="permission-item">
+          <strong>storage</strong>
+          To save your preferences and usage statistics locally
+        </div>
+        <div class="permission-item">
+          <strong>identity</strong>
+          To enable Google OAuth sign-in
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us:</p>
+        <p style="margin-top: 1rem;"><strong>Email:</strong> <a href="mailto:pinkobubs@gmail.com">pinkobubs@gmail.com</a></p>
+      </div>
+
+      <div class="highlight-box" style="text-align: center; margin-top: 3rem;">
+        <p><strong>By using PromptEnhance, you acknowledge that you have read and understood this Privacy Policy.</strong></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="logo-mark small">
+              <img src="logotransparent.png" alt="PromptEnhance Logo" />
+            </div>
+            <span>PromptEnhance</span>
+          </div>
+          <p class="footer-desc">Transform your AI prompts instantly with one-click enhancement. Better prompts, better results.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#examples">Examples</a></li>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="policy.html">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:pinkobubs@gmail.com">Contact</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 PromptEnhance. All rights reserved.</p>
+        <p class="footer-credit">Made with <span class="heart">♥</span> by <span class="creator">pinkobubs</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
