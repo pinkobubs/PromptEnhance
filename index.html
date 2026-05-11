@@ -371,12 +371,12 @@
           <div class="card-shine"></div>
           <div class="card-border"></div>
           <div class="feature-content">
-            <h3>Three Enhancement Styles</h3>
-            <p>Choose Concise, Balanced, or Detailed based on your needs. Perfect control over how much enhancement you want.</p>
+            <h3>Advanced Enhancement Techniques</h3>
+            <p>Layer on professional prompt engineering techniques to get even better results. Enable any combination for your task.</p>
             <div class="feature-tags">
-              <button class="tag" data-style="concise">Concise</button>
-              <button class="tag active" data-style="balanced">Balanced</button>
-              <button class="tag" data-style="detailed">Detailed</button>
+              <button class="tag active" data-style="role">Add Role</button>
+              <button class="tag" data-style="cot">Chain-of-Thought</button>
+              <button class="tag" data-style="fewshot">Few-Shot</button>
             </div>
           </div>
         </div>
@@ -459,7 +459,7 @@
         <span class="section-tag" data-animate="fade-up">Advanced</span>
         <h2 class="section-title" data-animate="fade-up" data-delay="100">Total control with <br><em>Advanced Settings</em></h2>
         <p class="section-desc" data-animate="fade-up" data-delay="200">
-          Fine-tune your prompts with professional-grade options. Choose frameworks, enable techniques, and adjust parameters for perfect results.
+          Fine-tune your prompts with professional-grade enhancement techniques for perfect results.
         </p>
       </div>
 
@@ -471,31 +471,6 @@
           <div class="settings-header">
             <h4>ADVANCED SETTINGS</h4>
             <button class="reset-btn">Reset</button>
-          </div>
-
-          <!-- Framework Selector -->
-          <div class="settings-group">
-            <label class="settings-label">
-              STRUCTURE FRAMEWORK
-              <span class="info-icon" data-highlight="framework">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M8 7V11M8 5V5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-              </span>
-            </label>
-            <div class="select-wrapper">
-              <select class="custom-select" id="framework-select">
-                <option value="none">None</option>
-                <option value="costar">COSTAR</option>
-                <option value="risen" selected>RISEN</option>
-                <option value="ape">APE</option>
-                <option value="care">CARE</option>
-              </select>
-              <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </div>
           </div>
 
           <!-- Enhancement Techniques -->
@@ -538,83 +513,11 @@
             </div>
           </div>
 
-          <!-- Fine-tuning Parameters -->
-          <div class="settings-group">
-            <label class="settings-label">FINE-TUNING PARAMETERS</label>
-
-            <div class="slider-item">
-              <div class="slider-header">
-                <span class="slider-name">
-                  Temperature
-                  <span class="info-icon small" data-highlight="temperature">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
-                      <path d="M7 6V10M7 4V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                  </span>
-                </span>
-                <span class="slider-value" id="temp-value">0.7</span>
-              </div>
-              <div class="slider-wrapper">
-                <input type="range" class="custom-slider" id="temperature" min="0" max="1.5" step="0.1" value="0.7">
-                <div class="slider-track"></div>
-                <div class="slider-fill" id="temp-fill"></div>
-                <div class="slider-labels">
-                  <span>0.0 Focused</span>
-                  <span>0.7 Balanced</span>
-                  <span>1.5 Creative</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="slider-item">
-              <div class="slider-header">
-                <span class="slider-name">
-                  Top-P
-                  <span class="info-icon small" data-highlight="temperature">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.5"/>
-                      <path d="M7 6V10M7 4V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                  </span>
-                </span>
-                <span class="slider-value" id="topp-value">0.90</span>
-              </div>
-              <div class="slider-wrapper">
-                <input type="range" class="custom-slider" id="top-p" min="0" max="1" step="0.05" value="0.9">
-                <div class="slider-track"></div>
-                <div class="slider-fill" id="topp-fill"></div>
-                <div class="slider-labels">
-                  <span>0.0 Focused</span>
-                  <span>0.5 Balanced</span>
-                  <span>1.0 Diverse</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- Features Explanation -->
         <div class="advanced-features" data-animate="fade-left">
-          <div class="adv-feature" data-animate="fade-up" data-delay="0" data-feature="framework">
-            <div class="adv-feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M4 5H20M4 12H20M4 19H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="adv-feature-content">
-              <h4>Prompt Frameworks</h4>
-              <p>Choose from proven structures like RISEN, COSTAR, APE, or CARE to give your prompts professional scaffolding.</p>
-              <div class="framework-tags">
-                <span class="fw-tag">RISEN</span>
-                <span class="fw-tag">COSTAR</span>
-                <span class="fw-tag">APE</span>
-                <span class="fw-tag">CARE</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="adv-feature" data-animate="fade-up" data-delay="100" data-feature="role">
+          <div class="adv-feature" data-animate="fade-up" data-delay="0" data-feature="role">
             <div class="adv-feature-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
@@ -657,17 +560,6 @@
             </div>
           </div>
 
-          <div class="adv-feature" data-animate="fade-up" data-delay="300" data-feature="temperature">
-            <div class="adv-feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 16L5.5 21L8 13.5L2 9H9.5L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="adv-feature-content">
-              <h4>Temperature & Top-P</h4>
-              <p>Fine-tune creativity vs precision. Lower values = focused, higher values = creative diversity.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
